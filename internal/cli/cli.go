@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"gator/internal/config"
 	"gator/internal/database"
+	"gator/internal/rssfeed"
 	"time"
 
 	"github.com/google/uuid"
@@ -18,6 +19,39 @@ type State struct {
 type Command struct {
 	Name string
 	Args []string
+}
+
+func HandlerAgg(s *State, cmd Command) error {
+	feed, err := rssfeed.FetchFeed(context.Background(), "https://www.wagslane.dev/index.xml")
+	if err != nil {
+		return fmt.Errorf("ошибка загрузки ленты: %w", err)
+	}
+	fmt.Printf("Feed: %+v\n", feed)
+	return nil
+}
+
+func HandlerUsers(s *State, cmd Command) error {
+	users, err := s.DB.GetUsers(context.Background())
+	if err != nil {
+		return fmt.Errorf("не удалось получить пользователей: %w", err)
+	}
+	for _, u := range users {
+		line := "* " + u.Name
+		if u.Name == s.CFG.CurrentUser {
+			line += " (current)"
+		}
+		fmt.Println(line)
+	}
+	return nil
+}
+
+func HandlerReset(s *State, cmd Command) error {
+	err := s.DB.DeleteAllUsers(context.Background())
+	if err != nil {
+		return fmt.Errorf("не удалось очистить базу: %w", err)
+	}
+	fmt.Println("Все пользователи удалены.")
+	return nil
 }
 
 func HandlerRegister(s *State, cmd Command) error {

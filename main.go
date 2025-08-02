@@ -36,6 +36,9 @@ func main() {
 	}
 	cmds.Register("login", cli.HandlerLogin)
 	cmds.Register("register", cli.HandlerRegister)
+	cmds.Register("reset", cli.HandlerReset)
+	cmds.Register("users", cli.HandlerUsers)
+	cmds.Register("agg", cli.HandlerAgg)
 
 	if len(os.Args) < 2 {
 		fmt.Fprintln(os.Stderr, "Ошибка: укажите команду")

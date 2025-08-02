@@ -14,8 +14,8 @@ type Config struct {
 }
 
 func Read() Config {
-	filepath := getFilepath()
-	data, _ := os.ReadFile(filepath)
+	path := getFilepath()
+	data, _ := os.ReadFile(path)
 	var cfg Config
 	json.Unmarshal(data, &cfg)
 	return cfg
@@ -23,9 +23,9 @@ func Read() Config {
 
 func (cfg *Config) SetUser(name string) error {
 	cfg.CurrentUser = name
-	filepath := getFilepath()
+	path := getFilepath()
 	data, _ := json.Marshal(cfg)
-	return os.WriteFile(filepath, data, 0644)
+	return os.WriteFile(path, data, 0644)
 }
 
 func getFilepath() string {
