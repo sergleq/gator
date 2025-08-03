@@ -39,17 +39,17 @@ func main() {
 	cmds.Register("reset", cli.HandlerReset)
 	cmds.Register("users", cli.HandlerUsers)
 	cmds.Register("agg", cli.HandlerAgg)
+	cmds.Register("addfeed", cli.HandlerAddFeed)
+	cmds.Register("feeds", cli.HandlerFeeds)
 
 	if len(os.Args) < 2 {
 		fmt.Fprintln(os.Stderr, "Ошибка: укажите команду")
 		os.Exit(1)
 	}
-
 	cmd := cli.Command{
 		Name: os.Args[1],
 		Args: os.Args[2:],
 	}
-
 	err1 := cmds.Run(state, cmd)
 	if err1 != nil {
 		fmt.Fprintf(os.Stderr, "Ошибка: %v\n", err1)
