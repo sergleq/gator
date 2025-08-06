@@ -6,12 +6,13 @@ import (
 	"time"
 
 	"gator/internal/database"
+	"gator/internal/state"
 
 	"github.com/google/uuid"
 )
 
-func MiddlewareLoggedIn(handler func(s *State, cmd Command, user database.User) error) func(*State, Command) error {
-	return func(s *State, cmd Command) error {
+func MiddlewareLoggedIn(handler func(s *state.State, cmd Command, user database.User) error) func(*state.State, Command) error {
+	return func(s *state.State, cmd Command) error {
 		user, err := s.DB.GetUser(context.Background(), s.CFG.CurrentUser)
 		if err != nil {
 			return fmt.Errorf("требуется залогиненный пользователь: %w", err)
@@ -20,7 +21,7 @@ func MiddlewareLoggedIn(handler func(s *State, cmd Command, user database.User) 
 	}
 }
 
-func HandlerAddFeed(s *State, cmd Command, user database.User) error {
+func HandlerAddFeed(s *state.State, cmd Command, user database.User) error {
 	if len(cmd.Args) < 2 {
 		return fmt.Errorf("использование: addfeed <name> <url>")
 	}

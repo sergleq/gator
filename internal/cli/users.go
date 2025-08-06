@@ -3,9 +3,10 @@ package cli
 import (
 	"context"
 	"fmt"
+	"gator/internal/state"
 )
 
-func HandlerUsers(s *State, cmd Command) error {
+func HandlerUsers(s *state.State, cmd Command) error {
 	users, err := s.DB.GetUsers(context.Background())
 	if err != nil {
 		return fmt.Errorf("не удалось получить пользователей: %w", err)

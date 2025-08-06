@@ -6,11 +6,12 @@ import (
 	"time"
 
 	"gator/internal/database"
+	"gator/internal/state"
 
 	"github.com/google/uuid"
 )
 
-func HandlerFollow(s *State, cmd Command) error {
+func HandlerFollow(s *state.State, cmd Command) error {
 	if len(cmd.Args) < 1 {
 		return fmt.Errorf("использование: follow <feed_url>")
 	}

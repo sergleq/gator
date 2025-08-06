@@ -3,9 +3,10 @@ package cli
 import (
 	"context"
 	"fmt"
+	"gator/internal/state"
 )
 
-func HandlerListFollows(s *State, cmd Command) error {
+func HandlerListFollows(s *state.State, cmd Command) error {
 	user, err := s.DB.GetUser(context.Background(), s.CFG.CurrentUser)
 	if err != nil {
 		return fmt.Errorf("пользователь не найден: %w", err)

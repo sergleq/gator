@@ -4,9 +4,10 @@ import (
 	"context"
 	"fmt"
 	"gator/internal/database"
+	"gator/internal/state"
 )
 
-func HandlerUnfollow(s *State, cmd Command, user database.User) error {
+func HandlerUnfollow(s *state.State, cmd Command, user database.User) error {
 	if len(cmd.Args) < 1 {
 		return fmt.Errorf("использование: unfollow <feed_url>")
 	}

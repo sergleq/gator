@@ -6,6 +6,7 @@ import (
 	"gator/internal/cli"
 	"gator/internal/config"
 	"gator/internal/database"
+	"gator/internal/state"
 	"os"
 
 	_ "github.com/lib/pq"
@@ -27,12 +28,12 @@ func main() {
 	// Инициализируем sqlc Queries
 	dbQueries := database.New(db)
 	// Инициализируем state
-	state := &cli.State{
+	appstate := &state.State{
 		DB:  dbQueries,
 		CFG: &cfg,
 	}
 	cmds := &cli.Commands{
-		Handlers: make(map[string]func(*cli.State, cli.Command) error),
+		Handlers: make(map[string]func(*state.State, cli.Command) error),
 	}
 	cmds.Register("login", cli.HandlerLogin)
 	cmds.Register("register", cli.HandlerRegister)
@@ -54,7 +55,7 @@ func main() {
 		Name: os.Args[1],
 		Args: os.Args[2:],
 	}
-	err1 := cmds.Run(state, cmd)
+	err1 := cmds.Run(appstate, cmd)
 	if err1 != nil {
 		fmt.Fprintf(os.Stderr, "Ошибка: %v\n", err1)
 		os.Exit(1)

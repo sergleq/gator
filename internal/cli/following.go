@@ -3,9 +3,10 @@ package cli
 import (
 	"context"
 	"fmt"
+	"gator/internal/state"
 )
 
-func HandlerFollowing(s *State, cmd Command) error {
+func HandlerFollowing(s *state.State, cmd Command) error {
 	// Получаем текущего пользователя
 	user, err := s.DB.GetUser(context.Background(), s.CFG.CurrentUser)
 	if err != nil {

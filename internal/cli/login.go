@@ -4,9 +4,10 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"gator/internal/state"
 )
 
-func HandlerLogin(s *State, cmd Command) error {
+func HandlerLogin(s *state.State, cmd Command) error {
 	if len(cmd.Args) < 1 {
 		return errors.New("the login handler expects a single argument, the username")
 	}

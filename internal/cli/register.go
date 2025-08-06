@@ -4,12 +4,13 @@ import (
 	"context"
 	"fmt"
 	"gator/internal/database"
+	"gator/internal/state"
 	"time"
 
 	"github.com/google/uuid"
 )
 
-func HandlerRegister(s *State, cmd Command) error {
+func HandlerRegister(s *state.State, cmd Command) error {
 	if len(cmd.Args) < 1 {
 		return fmt.Errorf("регистрация требует имя пользователя")
 	}
