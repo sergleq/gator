@@ -17,7 +17,7 @@
 
 ```bash
 go install github.com/sergleq/gator@latest
-
+```
 ---
 
 ## Команды
