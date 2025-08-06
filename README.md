@@ -8,11 +8,11 @@
 
 ### Зарегистрировать пользователя
 ```bash
-gator register alice
+gator register <name>
 ```
 ### Войти как пользователь
 ```bash
-gator login alice
+gator login <name>
 ```
 ### Добавить ленту
 ```bash
