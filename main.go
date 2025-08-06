@@ -39,9 +39,12 @@ func main() {
 	cmds.Register("reset", cli.HandlerReset)
 	cmds.Register("users", cli.HandlerUsers)
 	cmds.Register("agg", cli.HandlerAgg)
-	cmds.Register("addfeed", cli.HandlerAddFeed)
+	cmds.Register("addfeed", cli.MiddlewareLoggedIn(cli.HandlerAddFeed))
 	cmds.Register("feeds", cli.HandlerFeeds)
 	cmds.Register("follow", cli.HandlerFollow)
+	cmds.Register("listfollow", cli.HandlerListFollows)
+	cmds.Register("following", cli.HandlerFollowing)
+	cmds.Register("unfollow", cli.MiddlewareLoggedIn(cli.HandlerUnfollow))
 
 	if len(os.Args) < 2 {
 		fmt.Fprintln(os.Stderr, "Ошибка: укажите команду")
