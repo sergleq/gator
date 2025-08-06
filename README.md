@@ -22,34 +22,34 @@ go install github.com/sergleq/gator@latest
 
 ## Команды
 
-# Зарегистрировать пользователя
+### Зарегистрировать пользователя
 gator register alice
 
-# Войти как пользователь
+### Войти как пользователь
 gator login alice
 
-# Добавить ленту
+### Добавить ленту
 gator addfeed "Boot.dev Blog" https://www.wagslane.dev/index.xml
 
-# Подписаться на ленту
+### Подписаться на ленту
 gator follow https://www.wagslane.dev/index.xml
 
-# Посмотреть подписки
+### Посмотреть подписки
 gator following
 
-# Посмотреть всех пользователей
+### Посмотреть всех пользователей
 gator users
 
-# Посмотреть все ленты
+### Посмотреть все ленты
 gator feeds
 
-# Разорвать подписку
+### Разорвать подписку
 gator unfollow https://www.wagslane.dev/index.xml
 
-# Сбросить базу
+### Сбросить базу
 gator reset
 
-# Агрегация постов из RSS
+### Агрегация постов из RSS
 gator agg 1m
 
 
