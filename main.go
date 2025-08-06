@@ -41,6 +41,7 @@ func main() {
 	cmds.Register("agg", cli.HandlerAgg)
 	cmds.Register("addfeed", cli.HandlerAddFeed)
 	cmds.Register("feeds", cli.HandlerFeeds)
+	cmds.Register("follow", cli.HandlerFollow)
 
 	if len(os.Args) < 2 {
 		fmt.Fprintln(os.Stderr, "Ошибка: укажите команду")
